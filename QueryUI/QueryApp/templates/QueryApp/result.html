@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Query Result</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <div class="bg-white shadow-sm border-b border-gray-200">
+            <div class="max-w-6xl mx-auto px-4 py-6">
+                <h1 class="text-3xl font-bold text-gray-900">Government Query Interface</h1>
+                <p class="text-gray-600 mt-1">Query agent</p>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 max-w-6xl mx-auto w-full px-4 py-8">
+
+            <!-- Search Form -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <form method="get" class="space-y-4">
+                    <!-- changed to 4 columns on md so we can make description span 2 -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Service Keyword
+                            </label>
+                            <input type="text" name="q" required placeholder="Enter service details..."
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
+                        </div>
+
+                        <div class="md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Number of Results
+                            </label>
+                            <input type="number" name="q_amount" required placeholder="3" value="3" min="1" max="10"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition">
+                        </div>
+
+                        <button type="submit"
+                            class="md:col-span-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 ease-in-out transform hover:scale-105">
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Results Table -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+                    <h2 class="text-xl font-bold text-gray-900">Results</h2>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-100 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                    Service Feature
+                                </th>
+                                <th class="px-6 py-3 text-right text-sm font-semibold text-gray-900">
+                                    Similarity Score
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            {% if results_score %}
+                            {% for r, s in results_score %}
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="px-6 py-4 text-sm text-gray-900">{{ r }}</td>
+                                <td class="px-6 py-4 text-sm text-right font-semibold">
+                                    <span
+                                        class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                                        {{ s }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <tr>
+                                <td colspan="2" class="px-6 py-8 text-center text-gray-500">
+                                    No results found. Try a different search.
+                                </td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

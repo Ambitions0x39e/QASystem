@@ -1,0 +1,11 @@
+# Py Cache Dependencies
+__pycache__
+
+# Database
+.sqlite3
+
+# Py Env
+*.env
+
+# UV Lock
+uv.lock
