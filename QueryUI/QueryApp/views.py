@@ -4,7 +4,7 @@ from pathlib import Path
 import sys, os
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from main import query_jaccard, query_tfidf  # query(q: str, q_amount: int)
+# from main import query_jaccard, query_tfidf  # query(q: str, q_amount: int)
 from match import match_intent
 
 # def query_view(request):
