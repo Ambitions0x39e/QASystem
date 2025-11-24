@@ -9,3 +9,6 @@ __pycache__
 
 # UV Lock
 uv.lock
+desc.csv
+desc2.csv
+QueryUI/options.csv
